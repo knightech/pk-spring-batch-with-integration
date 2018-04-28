@@ -39,7 +39,7 @@
 
     <int:transformer input-channel="inboundFileChannel"
                      output-channel="outboundJobRequestChannel">
-        <bean class="io.spring.sbi.FileMessageToJobRequest">
+        <bean class="com.example.FileMessageToJobRequest">
             <property name="job" ref="personJob"/>
             <property name="fileParameterName" value="input.file.name"/>
         </bean>

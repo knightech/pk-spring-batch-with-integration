@@ -1,4 +1,4 @@
-package io.spring.sbi;
+package com.example;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParametersBuilder;
