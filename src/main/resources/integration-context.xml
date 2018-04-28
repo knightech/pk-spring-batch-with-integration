@@ -23,23 +23,31 @@
     http://www.springframework.org/schema/jdbc
 	http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
 
-    <int:annotation-config />
+    <int:annotation-config/>
     <context:component-scan base-package="com.example"/>
 
     <int:channel id="inboundFileChannel"/>
+    <int:channel id="filteredFilesChannel"/>
+    <int:channel id="rejectedFilesChannel"/>
     <int:channel id="outboundJobRequestChannel"/>
     <int:channel id="jobLaunchReplyChannel"/>
 
     <int-file:inbound-channel-adapter id="filePoller"
                                       channel="inboundFileChannel"
                                       directory="file:input"
-                                      filter="filter"
                                       filename-pattern="*.txt">
         <int:poller fixed-rate="1000"/>
     </int-file:inbound-channel-adapter>
 
-    <int:transformer input-channel="filteredFilesChannel"
-                     output-channel="outboundJobRequestChannel">
+    <int:filter input-channel="inboundFileChannel" output-channel="filteredFilesChannel"
+                ref="filter"  discard-channel="rejectedFilesChannel"/>
+
+    <bean id="filter" class="com.example.validator.FileValidator"/>
+
+    <int-file:outbound-channel-adapter id="filteredFileProcessor" channel="rejectedFilesChannel"
+                                       directory="file:invalidFiles"/>
+
+    <int:transformer input-channel="filteredFilesChannel" output-channel="outboundJobRequestChannel">
         <bean class="com.example.config.JobRequestHelper">
             <property name="job" ref="personJob"/>
             <property name="fileParameterName" value="input.file.name"/>
@@ -51,7 +59,7 @@
     <int:logging-channel-adapter channel="jobLaunchReplyChannel"/>
 
     <jdbc:initialize-database data-source="dataSource">
-        <jdbc:script location="org/springframework/batch/core/schema-drop-mysql.sql" />
-        <jdbc:script location="org/springframework/batch/core/schema-mysql.sql" />
+        <jdbc:script location="org/springframework/batch/core/schema-drop-mysql.sql"/>
+        <jdbc:script location="org/springframework/batch/core/schema-mysql.sql"/>
     </jdbc:initialize-database>
 </beans>

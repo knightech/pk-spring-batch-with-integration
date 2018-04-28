@@ -33,7 +33,6 @@ public class BatchConfiguration {
     @Bean
     @StepScope
     public FlatFileItemReader<Person> reader(@Value("#{jobParameters['input.file.name']}") String resource) {
-        System.out.println("READER: " + resource);
         FlatFileItemReader<Person> reader = new FlatFileItemReader<>();
         reader.setLineMapper((line, lineNumber) -> new Person(line));
         reader.setResource(new FileSystemResource(resource));
@@ -42,25 +41,21 @@ public class BatchConfiguration {
 
     @Bean
     public ItemProcessor processor() {
-        System.out.println("PROCESSOR");
         return new PassThroughItemProcessor();
     }
 
     @Bean
     public CustomItemWriter writer() {
-        System.out.println("WRITER");
         return new CustomItemWriter();
     }
 
     @Bean
     public Job personJob(Step step1) {
-        System.out.println("JOB");
         return jobBuilderFactory.get("personJob").incrementer(new RunIdIncrementer()).flow(step1).end().build();
     }
 
     @Bean
     public Step step1(ItemReader reader, CustomItemWriter writer) {
-        System.out.println("STEP");
         return stepBuilderFactory.get("step1").<Person, Person>chunk(10).reader(reader).processor(processor()).writer(writer).build();
     }
 
