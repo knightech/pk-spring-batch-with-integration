@@ -1,4 +1,4 @@
-package io.spring;
+package com.example.model;
 
 public class Person {
 

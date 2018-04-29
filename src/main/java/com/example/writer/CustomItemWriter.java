@@ -1,5 +1,6 @@
-package io.spring;
+package com.example.writer;
 
+import com.example.model.Person;
 import org.springframework.batch.item.ItemWriter;
 
 import java.util.List;
