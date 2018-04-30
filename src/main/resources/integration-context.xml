@@ -36,7 +36,7 @@
                                       channel="inboundFileChannel"
                                       directory="file:input"
                                       filename-pattern="*.txt">
-        <int:poller fixed-rate="1000"/>
+        <int:poller fixed-rate="20000"/>
     </int-file:inbound-channel-adapter>
 
     <int:filter input-channel="inboundFileChannel" output-channel="filteredFilesChannel"
