@@ -20,9 +20,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 
 @Configuration
 public class BatchConfiguration {
+
+    @Value("${spring.application.name}")
+    private String appName;
 
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -50,7 +54,8 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public Job personJob(Step step1) {
+    public Job personJob(Step step1) throws IOException {
+        System.out.println(appName + " creating job");
         return jobBuilderFactory.get("personJob").incrementer(new RunIdIncrementer()).flow(step1).end().build();
     }
 
@@ -58,7 +63,6 @@ public class BatchConfiguration {
     public Step step1(ItemReader reader, CustomItemWriter writer) {
         return stepBuilderFactory.get("step1").<Person, Person>chunk(10).reader(reader).processor(processor()).writer(writer).build();
     }
-
 
     @Bean
     public DataSource dataSource() {
@@ -70,4 +74,3 @@ public class BatchConfiguration {
                 .build();
     }
 }
-

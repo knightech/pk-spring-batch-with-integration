@@ -1,5 +1,43 @@
-a
-b
-c
-d
-e
+
+2018-05-19 19:14:40.532  INFO 3136 --- [           main] com.example.App                          : Starting App on AVENGERS with PID 3136 (C:\deployed\adapter\batch-integration-with-integration-0.0.1-SNAPSHOT.jar started by SHIELD in C:\deployed\adapter)
+2018-05-19 19:14:40.539  INFO 3136 --- [           main] com.example.App                          : No active profile set, falling back to default profiles: default
+2018-05-19 19:14:40.615  INFO 3136 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@72f926e6: startup date [Sat May 19 19:14:40 BST 2018]; root of context hierarchy
+2018-05-19 19:14:40.769  INFO 3136 --- [           main] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/C:/deployed/adapter/batch-integration-with-integration-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/integration-context.xml]
+2018-05-19 19:14:41.250  INFO 3136 --- [           main] o.s.i.config.IntegrationRegistrar        : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.springframework.cglib.core.ReflectUtils$1 (jar:file:/C:/deployed/adapter/batch-integration-with-integration-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/spring-core-4.3.16.RELEASE.jar!/) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of org.springframework.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2018-05-19 19:14:41.640  INFO 3136 --- [           main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2018-05-19 19:14:41.642  INFO 3136 --- [           main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2018-05-19 19:14:41.824  INFO 3136 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [org.springframework.beans.factory.config.PropertiesFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-19 19:14:41.825  INFO 3136 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [java.util.Properties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-19 19:14:42.571  INFO 3136 --- [           main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'taskScheduler'
+${spring.application.name}: Creating job
+2018-05-19 19:14:43.723  INFO 3136 --- [           main] o.s.jdbc.datasource.init.ScriptUtils     : Executing SQL script from class path resource [org/springframework/batch/core/schema-drop-mysql.sql]
+2018-05-19 19:14:44.056  INFO 3136 --- [           main] o.s.jdbc.datasource.init.ScriptUtils     : Executed SQL script from class path resource [org/springframework/batch/core/schema-drop-mysql.sql] in 332 ms.
+2018-05-19 19:14:44.057  INFO 3136 --- [           main] o.s.jdbc.datasource.init.ScriptUtils     : Executing SQL script from class path resource [org/springframework/batch/core/schema-mysql.sql]
+2018-05-19 19:14:44.866  INFO 3136 --- [           main] o.s.jdbc.datasource.init.ScriptUtils     : Executed SQL script from class path resource [org/springframework/batch/core/schema-mysql.sql] in 809 ms.
+2018-05-19 19:14:45.037  INFO 3136 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2018-05-19 19:14:45.038  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : Adding {filter} as a subscriber to the 'inboundFileChannel' channel
+2018-05-19 19:14:45.038  INFO 3136 --- [           main] o.s.integration.channel.DirectChannel    : Channel 'application.inboundFileChannel' has 1 subscriber(s).
+2018-05-19 19:14:45.038  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : started org.springframework.integration.config.ConsumerEndpointFactoryBean#0
+2018-05-19 19:14:45.038  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : Adding {message-handler:filteredFileProcessor} as a subscriber to the 'rejectedFilesChannel' channel
+2018-05-19 19:14:45.039  INFO 3136 --- [           main] o.s.integration.channel.DirectChannel    : Channel 'application.rejectedFilesChannel' has 1 subscriber(s).
+2018-05-19 19:14:45.039  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : started filteredFileProcessor
+2018-05-19 19:14:45.039  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : Adding {transformer} as a subscriber to the 'filteredFilesChannel' channel
+2018-05-19 19:14:45.039  INFO 3136 --- [           main] o.s.integration.channel.DirectChannel    : Channel 'application.filteredFilesChannel' has 1 subscriber(s).
+2018-05-19 19:14:45.039  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : started org.springframework.integration.config.ConsumerEndpointFactoryBean#1
+2018-05-19 19:14:45.039  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : Adding {message-handler} as a subscriber to the 'outboundJobRequestChannel' channel
+2018-05-19 19:14:45.040  INFO 3136 --- [           main] o.s.integration.channel.DirectChannel    : Channel 'application.outboundJobRequestChannel' has 1 subscriber(s).
+2018-05-19 19:14:45.040  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : started org.springframework.integration.config.ConsumerEndpointFactoryBean#2
+2018-05-19 19:14:45.040  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter} as a subscriber to the 'jobLaunchReplyChannel' channel
+2018-05-19 19:14:45.040  INFO 3136 --- [           main] o.s.integration.channel.DirectChannel    : Channel 'application.jobLaunchReplyChannel' has 1 subscriber(s).
+2018-05-19 19:14:45.041  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : started org.springframework.integration.config.ConsumerEndpointFactoryBean#3
+2018-05-19 19:14:45.041  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2018-05-19 19:14:45.041  INFO 3136 --- [           main] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 1 subscriber(s).
+2018-05-19 19:14:45.041  INFO 3136 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : started _org.springframework.integration.errorLogger
+2018-05-19 19:14:45.041  INFO 3136 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 1073741823
+2018-05-19 19:14:45.048  INFO 3136 --- [           main] o.s.i.e.SourcePollingChannelAdapter      : started filePoller
+2018-05-19 19:14:45.064  INFO 3136 --- [           main] com.example.App                          : Started App in 5.222 seconds (JVM running for 6.15)
