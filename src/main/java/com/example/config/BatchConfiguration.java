@@ -67,10 +67,10 @@ public class BatchConfiguration {
     @Bean
     public DataSource dataSource() {
         return DataSourceBuilder.create()
-                .url("jdbc:mysql://localhost:3306/batchdb")
-                .driverClassName("com.mysql.jdbc.Driver")
+                .url("jdbc:mariadb://localhost:3307/batchdb")
+                .driverClassName("org.mariadb.jdbc.Driver")
                 .username("root")
-                .password("root")
+                .password("")
                 .build();
     }
 }

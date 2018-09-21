@@ -22,6 +22,9 @@ repositories {
     mavenCentral()
 }
 
+bootRun {
+    systemProperties = System.properties
+}
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-integration')
@@ -29,5 +32,9 @@ dependencies {
     compile 'org.springframework.integration:spring-integration-file'
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+    compile group: 'ch.vorburger.mariaDB4j', name: 'mariaDB4j', version: '2.3.0'
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0'
+    
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
 }
