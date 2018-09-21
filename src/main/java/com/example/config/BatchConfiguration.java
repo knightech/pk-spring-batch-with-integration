@@ -4,6 +4,7 @@ import com.example.model.Person;
 import com.example.writer.CustomItemWriter;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.DefaultBatchConfigurer;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -34,6 +35,8 @@ public class BatchConfiguration {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
+   
+    
     @Bean
     @StepScope
     public FlatFileItemReader<Person> reader(@Value("#{jobParameters['input.file.name']}") String resource) {
@@ -62,15 +65,5 @@ public class BatchConfiguration {
     @Bean
     public Step step1(ItemReader reader, CustomItemWriter writer) {
         return stepBuilderFactory.get("step1").<Person, Person>chunk(10).reader(reader).processor(processor()).writer(writer).build();
-    }
-
-    @Bean
-    public DataSource dataSource() {
-        return DataSourceBuilder.create()
-                .url("jdbc:mariadb://localhost:3307/batchdb")
-                .driverClassName("org.mariadb.jdbc.Driver")
-                .username("root")
-                .password("")
-                .build();
     }
 }
